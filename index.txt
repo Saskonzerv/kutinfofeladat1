@@ -1,0 +1,14 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def random_data(N, M=0):
+    a = 10 * np.random.rand() - 2.5
+    b = 20 * np.random.rand() - 5
+    c = 100 * np.random.rand() - 50
+    x = np.linspace(-(N-1)/2, (N-1)/2, N)
+    sigma = 10 * (np.random.rand(x.shape[0]) + 1)
+    y = np.random.normal(a * x**2 + b * x + c, sigma)
+    if M>0:
+        idx = random.choice(range(N),M,replace=False)                     # ne legyen ismétlés
+        y[idx] = np.min(y) + np.random.rand(M) * (np.max(y) - np.min(y))  # ne legyenek egyformák
+    return x, y, sigma
